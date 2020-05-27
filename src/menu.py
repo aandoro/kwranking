@@ -17,6 +17,13 @@ def opcion_seleccionada(opcion):
         muestra_keywords()
         return ''
     elif opcion == 3:
-        comprueba_keywords()
+        print('')
+        kw = input('Ingrese la palabra a buscar:')
+        dominio = input('Ingrese en que dominio tiene que buscarlo:')
+        posicion = comprueba_keywords(kw, dominio)
+        if posicion < 100:
+            return f'Las keywords {kw} se han encontrado en la posición {posicion} para el dominio {dominio}'
+        else:
+            return f'De momento, las keywords {kw} no rankean para el dominio {dominio}'
     else:
         return 'Opción no válida'
