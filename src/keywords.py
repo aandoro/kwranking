@@ -1,14 +1,19 @@
 import requests
 from bs4 import BeautifulSoup
+from src.model import Keyword
 
 url = 'https://www.google.com/search?'
 
 def carga_keywords():
     keywords = []
+    posicion = 1
     try:
         with open('keywords.txt') as fichero:
             for kw in fichero:
                 kw = kw.replace('\n', '')
+                kw_db = Keyword(kw,posicion)
+                posicion += 1
+                kw_db.save()
                 keywords.append(kw)
     except FileNotFoundError:
         print('No se encuentra el fichero keywords.txt')

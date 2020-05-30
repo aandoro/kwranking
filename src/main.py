@@ -1,7 +1,9 @@
 from src.menu import muestra_menu, opcion_seleccionada
+from src.model import Keyword
 
 def run():
-    keywords = []
+    keywords = Keyword.get_all()
+    print(keywords)
     while True:
         muestra_menu()
         opcion = input('Selecciona una opción > ')
