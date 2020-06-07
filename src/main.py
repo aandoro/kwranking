@@ -3,15 +3,14 @@ from src.model import Keyword
 
 def run():
     keywords = Keyword.get_all()
-    print(keywords)
     while True:
         muestra_menu()
-        opcion = input('Selecciona una opción > ')
+        opcion = int(input('Selecciona una opción > '))
         try:
             if int(opcion) == 0:
                 break
             else:
-                keywords = opcion_seleccionada(int(opcion))
+                keywords = opcion_seleccionada(opcion, keywords)
                 print('')
                 print(keywords)
         except ValueError:

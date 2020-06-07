@@ -6,15 +6,12 @@ url = 'https://www.google.com/search?'
 
 def carga_keywords():
     keywords = []
-    posicion = 1
     try:
         with open('keywords.txt') as fichero:
             for kw in fichero:
-                kw = kw.replace('\n', '')
-                kw_db = Keyword(kw,posicion)
-                posicion += 1
+                kw_db = Keyword(kw.replace('\n', ''))
                 kw_db.save()
-                keywords.append(kw)
+                keywords.append(kw_db)
     except FileNotFoundError:
         print('No se encuentra el fichero keywords.txt')
     return keywords
@@ -24,13 +21,14 @@ def muestra_keywords():
     keywords = carga_keywords()
     contador = 0
     for kw in keywords:
-        print(kw)
+        print(f'palabra: {kw.keyword}, posicion: {kw.posicion}')
         contador += 1
         if contador == 20:
             contador = 0
             input('Mostrar más...')
 
 def comprueba_keywords(kw, dominio):
+    print(f'{kw}')
     continuar = True
     posicion = 1
     encontrado = False
@@ -62,6 +60,9 @@ def comprueba_keywords(kw, dominio):
     if not encontrado:
         posicion = 100
     return posicion
+
+def keywords_como_lista_de_valores(keywords):
+    return [(kw.keyword, kw.posicion) for kw in keywords]
 
 def aparece_el_dominio(link, dominio):
     encontrado = False

@@ -8,7 +8,7 @@ class Keyword(Base):
     keyword = Column(String, unique=True, nullable = False)
     posicion = Column(Integer, nullable = True)
 
-    def __init__(self, keyword, posicion):
+    def __init__(self, keyword, posicion = None):
         self.keyword = keyword
         self.posicion = posicion
 
@@ -17,8 +17,17 @@ class Keyword(Base):
             session.add(self)
             session.commit()
         except Exception as e:
-            print(e)
+            session.rollback();
 
+    def update(self):
+        session.merge(self)
+        session.commit()
+
+    def delete(self):
+        session.delete(self)
+        session.commit()
+
+    @staticmethod
     def get_all():
         return session.query(Keyword).all()
 

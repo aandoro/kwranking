@@ -10,7 +10,7 @@ def muestra_menu():
     print('[3] - Comprobar palabras clave')
     print('[0] – Salir')
 
-def opcion_seleccionada(opcion):
+def opcion_seleccionada(opcion, kws):
     if opcion == 1:
         return carga_keywords()
     elif opcion == 2:
@@ -18,12 +18,13 @@ def opcion_seleccionada(opcion):
         return ''
     elif opcion == 3:
         print('')
-        kw = input('Ingrese la palabra a buscar:')
+        #kw = input('Ingrese la palabra a buscar:')
         dominio = input('Ingrese en que dominio tiene que buscarlo:')
-        posicion = comprueba_keywords(kw, dominio)
-        if posicion < 100:
-            return f'Las keywords {kw} se han encontrado en la posición {posicion} para el dominio {dominio}'
-        else:
-            return f'De momento, las keywords {kw} no rankean para el dominio {dominio}'
+        for kw in kws:
+            posicion = comprueba_keywords(kw.keyword, dominio)
+            if posicion < 100:
+                kw.posicion = posicion
+                kw.update()
+        return kws
     else:
         return 'Opción no válida'
