@@ -19,13 +19,15 @@ class Keyword(Base):
         except Exception as e:
             session.rollback();
 
-    def update(self):
-        session.merge(self)
-        session.commit()
+    def update(self,posicion):
+        return session.query(Keyword).get(self.id)
 
     def delete(self):
-        session.delete(self)
-        session.commit()
+        try:
+            session.delete(self)
+            session.commit()
+        except Exception as e:
+            session.rollback();
 
     @staticmethod
     def get_all():

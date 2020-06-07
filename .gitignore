@@ -6,3 +6,4 @@ lib64
 share/
 src/__pycache__/
 pyvenv.cfg
+keywords.sqlite

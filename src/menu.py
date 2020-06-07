@@ -18,13 +18,14 @@ def opcion_seleccionada(opcion, kws):
         return ''
     elif opcion == 3:
         print('')
-        #kw = input('Ingrese la palabra a buscar:')
         dominio = input('Ingrese en que dominio tiene que buscarlo:')
         for kw in kws:
             posicion = comprueba_keywords(kw.keyword, dominio)
             if posicion < 100:
-                kw.posicion = posicion
-                kw.update()
+                kw_db = kw.update(posicion)
+                print(f'{kw_db}')
+                kw_db.posicion = posicion
+                kw_db.save()
         return kws
     else:
         return 'Opción no válida'

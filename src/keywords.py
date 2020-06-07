@@ -28,7 +28,6 @@ def muestra_keywords():
             input('Mostrar más...')
 
 def comprueba_keywords(kw, dominio):
-    print(f'{kw}')
     continuar = True
     posicion = 1
     encontrado = False
