@@ -5,20 +5,16 @@ from src.model import Keyword
 url = 'https://www.google.com/search?'
 
 def carga_keywords():
-    keywords = []
     try:
         with open('keywords.txt') as fichero:
             for kw in fichero:
                 kw_db = Keyword(kw.replace('\n', ''))
                 kw_db.save()
-                keywords.append(kw_db)
     except FileNotFoundError:
         print('No se encuentra el fichero keywords.txt')
-    return keywords
 
-def muestra_keywords():
+def muestra_keywords(keywords):
     print('')
-    keywords = carga_keywords()
     contador = 0
     for kw in keywords:
         print(f'palabra: {kw.keyword}, posicion: {kw.posicion}')
@@ -61,7 +57,8 @@ def comprueba_keywords(kw, dominio):
     return posicion
 
 def keywords_como_lista_de_valores(keywords):
-    return [(kw.keyword, kw.posicion) for kw in keywords]
+    kw_tuplas  = [(kw.keyword, kw.posicion) for kw in keywords]
+    return kw_tuplas
 
 def aparece_el_dominio(link, dominio):
     encontrado = False

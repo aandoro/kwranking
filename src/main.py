@@ -10,9 +10,7 @@ def run():
             if int(opcion) == 0:
                 break
             else:
-                keywords = opcion_seleccionada(opcion, keywords)
-                print('')
-                print(keywords)
+                opcion_seleccionada(opcion, keywords)
         except ValueError:
             print('')
             print('La opcion no era numerica')

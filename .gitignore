@@ -7,3 +7,4 @@ share/
 src/__pycache__/
 pyvenv.cfg
 keywords.sqlite
+keywords.xlsx
